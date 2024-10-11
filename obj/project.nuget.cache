@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wtBMj9BT1Ok=",
+  "dgSpecHash": "Uq4HqvWKNBc=",
   "success": true,
-  "projectFilePath": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\MenuApp.csproj",
+  "projectFilePath": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\secondLabforWeb\\MenuApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",

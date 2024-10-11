@@ -878,11 +878,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\MenuApp.csproj",
+      "projectUniqueName": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\secondLabforWeb\\MenuApp.csproj",
       "projectName": "MenuApp",
-      "projectPath": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\MenuApp.csproj",
+      "projectPath": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\secondLabforWeb\\MenuApp.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\obj\\",
+      "outputPath": "G:\\Course_four\\Розробка web\\Project_for_web\\MenuApp\\secondLabforWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -958,7 +958,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

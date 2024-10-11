@@ -1,82 +1,103 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace LibrariesApp
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        Console.WriteLine("Demonstrating Thread class:");
+
+        // Виклик методів з класом Thread
+        ThreadExample1();
+        ThreadExample2();
+        ThreadExample3();
+
+        Console.WriteLine("\nDemonstrating Async-Await:");
+
+        // Виклик асинхронних методів
+        Task task1 = AsyncExample1();
+        Task task2 = AsyncExample2();
+        Task task3 = AsyncExample3();
+
+        // Чекати завершення асинхронних методів
+        Task.WaitAll(task1, task2, task3);
+
+        Console.WriteLine("All tasks completed.");
+    }
+
+    // 1. Метод з класом Thread: робить паузу у 2 секунди
+    static void ThreadExample1()
+    {
+        Thread thread = new Thread(() =>
         {
-            Console.WriteLine("Оберіть платформу для перегляду бібліотек:");
-            Console.WriteLine("1. .NET Standard");
-            Console.WriteLine("2. .NET Framework");
-            Console.WriteLine("3. Xamarin");
-            Console.WriteLine("4. Продемонструвати роботу з API");
+            Console.WriteLine("Thread 1 is starting...");
+            Thread.Sleep(2000); // Затримка на 2 секунди
+            Console.WriteLine("Thread 1 completed.");
+        });
+        thread.Start();
+    }
 
-            var choice = Console.ReadLine();
-
-            switch (choice)
+    // 2. Метод з класом Thread: рахує до 5
+    static void ThreadExample2()
+    {
+        Thread thread = new Thread(() =>
+        {
+            Console.WriteLine("Thread 2 is counting:");
+            for (int i = 1; i <= 5; i++)
             {
-                case "1":
-                    DescribeDotNetStandardLibraries();
-                    break;
-                case "2":
-                    DescribeDotNetFrameworkLibraries();
-                    break;
-                case "3":
-                    DescribeXamarinLibraries();
-                    break;
-                case "4":
-                    DemonstrateAPI();
-                    break;
-                default:
-                    Console.WriteLine("Невірний вибір");
-                    break;
+                Console.WriteLine(i);
+                Thread.Sleep(500); // Пауза між кожним кроком
             }
-            
-            // Затримка перед виходом з програми
-            Console.WriteLine("Натисніть будь-яку клавішу для завершення...");
-            Console.ReadLine();  // Затримує завершення програми
-        }
+            Console.WriteLine("Thread 2 completed.");
+        });
+        thread.Start();
+    }
 
-        static void DescribeDotNetStandardLibraries()
+    // 3. Метод з класом Thread: працює з параметром
+    static void ThreadExample3()
+    {
+        Thread thread = new Thread((object name) =>
         {
-            Console.WriteLine("Огляд бібліотек .NET Standard:");
-            Console.WriteLine("1. System.Net.Http - бібліотека для виконання HTTP запитів.");
-            Console.WriteLine("2. Newtonsoft.Json - популярна бібліотека для серіалізації/десеріалізації JSON.");
-            Console.WriteLine("3. Moq - інструмент для створення mock-об'єктів у тестах.");
-            Console.WriteLine("4. AutoMapper - інструмент для мапінгу даних між об'єктами різних типів.");
-            Console.WriteLine("5. Dapper - мікро ORM для виконання SQL запитів і мапінгу результатів на об'єкти.");
-        }
+            if (name != null) {
+                Console.WriteLine($"Thread 3 is processing for {name}...");
+            Thread.Sleep(1000);
+            Console.WriteLine($"Thread 3 completed for {name}.");
+            }
+        });
+        thread.Start("Alice");
+    }
 
+    // 1. Асинхронний метод: робить паузу у 1 секунду
+    static async Task AsyncExample1()
+    {
+        Console.WriteLine("Async method 1 is starting...");
+        await Task.Delay(1000); // Асинхронна пауза
+        Console.WriteLine("Async method 1 completed.");
+    }
 
-        static void DescribeDotNetFrameworkLibraries()
+    // 2. Асинхронний метод: рахує до 3 з паузами
+    static async Task AsyncExample2()
+    {
+        Console.WriteLine("Async method 2 is counting:");
+        for (int i = 1; i <= 3; i++)
         {
-            Console.WriteLine("Огляд бібліотек .NET Framework:");
-            Console.WriteLine("1. Entity Framework - ORM для баз даних");
-            Console.WriteLine("2. NUnit - Юніт-тести");
-            Console.WriteLine("3. Serilog - Логування");
-            Console.WriteLine("4. Quartz.NET - Планування завдань");
-            Console.WriteLine("5. SignalR - Реальний час комунікацій");
+            Console.WriteLine(i);
+            await Task.Delay(700); // Асинхронна пауза
         }
+        Console.WriteLine("Async method 2 completed.");
+    }
 
-        static void DescribeXamarinLibraries()
+    // 3. Асинхронний метод: виконує асинхронне очікування зовнішнього завдання
+    static async Task AsyncExample3()
+    {
+        Console.WriteLine("Async method 3 is starting...");
+        await Task.Run(() =>
         {
-            Console.WriteLine("Огляд бібліотек Xamarin:");
-            Console.WriteLine("1. Xamarin.Essentials - Доступ до функцій пристроїв");
-            Console.WriteLine("2. SkiaSharp - Графіка");
-            Console.WriteLine("3. Xamarin.Forms - Інтерфейс користувача");
-            Console.WriteLine("4. FFImageLoading - Кешування зображень");
-            Console.WriteLine("5. ReactiveUI - Реактивний інтерфейс");
-        }
-
-        static void DemonstrateAPI()
-        {
-            Console.WriteLine("Демонстрація роботи з API для .NET Standard:");
-            APIExample.JsonSerializationExample();
-            APIExample.CallHttpClientAPI().Wait();
-            APIExample.UseAutoMapper();
-            APIExample.UseDapper();
-            APIExample.UseMoq();
-        }
+            // Симуляція важкої операції
+            Thread.Sleep(1500);
+            Console.WriteLine("Heavy task in Async method 3 completed.");
+        });
+        Console.WriteLine("Async method 3 completed.");
     }
 }
